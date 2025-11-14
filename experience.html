@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experiencia - Leandro Ferrari</title>
+    <meta name="description" content="Experiencia profesional de Leandro Ferrari como desarrollador Python y especialista en Odoo.">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        :root {
+            --primary: #1a1a1a;
+            --secondary: #4a4a4a;
+            --accent: #e67e22;
+            --background: #fafafa;
+            --text: #2c2c2c;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--background);
+            color: var(--text);
+            padding-top: 80px;
+        }
+        
+        .font-display {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .navigation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(250, 250, 250, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-logo {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--primary);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--secondary);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--accent);
+        }
+        
+        .section {
+            padding: 5rem 0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .section-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary);
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--accent);
+            transform: translateX(-50%);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .timeline-item.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-right: 55%;
+            text-align: right;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-left: 55%;
+            text-align: left;
+        }
+        
+        .timeline-marker {
+            position: absolute;
+            left: 50%;
+            top: 20px;
+            width: 20px;
+            height: 20px;
+            background: var(--accent);
+            border-radius: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+        }
+        
+        .timeline-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+        
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        
+        .timeline-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-company {
+            font-size: 1.1rem;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-date {
+            font-size: 0.9rem;
+            color: var(--secondary);
+            font-family: 'JetBrains Mono', monospace;
+            margin-bottom: 1rem;
+        }
+        
+        .timeline-description {
+            color: var(--secondary);
+            line-height: 1.6;
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+        
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        
+        .project-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background: linear-gradient(135deg, var(--accent), #f39c12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            font-weight: bold;
+        }
+        
+        .project-content {
+            padding: 2rem;
+        }
+        
+        .project-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .project-tech {
+            font-size: 0.9rem;
+            color: var(--accent);
+            font-family: 'JetBrains Mono', monospace;
+            margin-bottom: 1rem;
+        }
+        
+        .project-description {
+            color: var(--secondary);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        
+        .project-achievements {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .project-achievements li {
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        .project-achievements li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+        
+        .footer {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+        
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-marker {
+                left: 30px;
+            }
+            
+            .timeline-item:nth-child(odd) .timeline-content,
+            .timeline-item:nth-child(even) .timeline-content {
+                margin-left: 60px;
+                margin-right: 0;
+                text-align: left;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navigation">
+        <div class="nav-container">
+            <div class="nav-logo">Leandro Ferrari</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="experience.html" class="active">Experiencia</a></li>
+                <li><a href="skills.html">Habilidades</a></li>
+                <li><a href="contact.html">Contacto</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Experience Timeline -->
+    <section class="section">
+        <div class="container">
+            <h1 class="section-title font-display">Mi Experiencia</h1>
+            
+            <div class="timeline">
+                <div class="timeline-item reveal-on-scroll">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">Desarrollador SSR Python Odoo</h3>
+                        <div class="timeline-company">Calyx Servicios</div>
+                        <div class="timeline-date">Septiembre 2023 - Octubre 2024</div>
+                        <div class="timeline-description">
+                            <p>Desarrollo de módulos personalizados en diferentes versiones de Odoo (v13, v14, v15, v16). Resolución de tickets de soporte técnico y funcional reportados por clientes. Interacción directa con clientes para relevar requerimientos y proponer soluciones dentro del marco de Odoo.</p>
+                            <br>
+                            <p><strong>Logros principales:</strong></p>
+                            <ul class="mt-2 space-y-1">
+                                <li>• Desarrollo de más de 15 módulos personalizados para diversos clientes</li>
+                                <li>• Resolución promedio de 20 tickets semanales</li>
+                                <li>• Implementación de integraciones con sistemas externos vía APIs</li>
+                                <li>• Optimización de consultas SQL para mejorar rendimiento en bases de datos grandes</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item reveal-on-scroll">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">Desarrollador Freelance Python</h3>
+                        <div class="timeline-company">Independiente</div>
+                        <div class="timeline-date">Agosto 2022 - Actualidad</div>
+                        <div class="timeline-description">
+                            <p>Desarrollo de soluciones personalizadas en Python para diversos clientes. Creación de scripts de automatización, desarrollo de APIs RESTful, integración de sistemas y desarrollo de herramientas de procesamiento de datos.</p>
+                            <br>
+                            <p><strong>Proyectos destacados:</strong></p>
+                            <ul class="mt-2 space-y-1">
+                                <li>• Sistema de automatización de reportes financieros</li>
+                                <li>• API REST para gestión de inventario</li>
+                                <li>• Herramienta de migración de datos entre sistemas</li>
+                                <li>• Sistema de scraping para análisis de precios de competencia</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="section" style="background: #f8f9fa;">
+        <div class="container">
+            <h2 class="section-title font-display">Proyectos Destacados</h2>
+            
+            <div class="projects-grid">
+                <div class="project-card reveal-on-scroll">
+                    <div class="project-image">ERP</div>
+                    <div class="project-content">
+                        <h3 class="project-title">Sistema ERP Personalizado</h3>
+                        <div class="project-tech">Python • Odoo • PostgreSQL • JavaScript</div>
+                        <p class="project-description">
+                            Desarrollo de un sistema ERP completo para una empresa de manufactura, incluyendo módulos de inventario, 
+                            ventas, compras y producción.
+                        </p>
+                        <ul class="project-achievements">
+                            <li>Reducción del 40% en tiempo de procesamiento de órdenes</li>
+                            <li>Integración completa con sistema contable existente</li>
+                            <li>Mejora en la visibilidad del inventario en tiempo real</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="project-card reveal-on-scroll">
+                    <div class="project-image">API</div>
+                    <div class="project-content">
+                        <h3 class="project-title">API de Gestión de Clientes</h3>
+                        <div class="project-tech">Python • Flask • PostgreSQL • Docker</div>
+                        <p class="project-description">
+                            API RESTful para gestión integral de clientes, incluyendo autenticación, autorización y 
+                            integración con sistemas de terceros.
+                        </p>
+                        <ul class="project-achievements">
+                            <li>Procesamiento de más de 10,000 peticiones por hora</li>
+                            <li>Tiempo de respuesta promedio menor a 200ms</li>
+                            <li>Documentación completa con Swagger/OpenAPI</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="project-card reveal-on-scroll">
+                    <div class="project-image">AUTO</div>
+                    <div class="project-content">
+                        <h3 class="project-title">Sistema de Automatización</h3>
+                        <div class="project-tech">Python • Selenium • Pandas • SMTP</div>
+                        <p class="project-description">
+                            Sistema automatizado para generación y envío de reportes financieros diarios, 
+                            integrando datos de múltiples fuentes.
+                        </p>
+                        <ul class="project-achievements">
+                            <li>Ahorro de 3 horas diarias en procesamiento manual</li>
+                            <li>Reducción del 95% en errores de datos</li>
+                            <li>Envío automatizado a más de 50 destinatarios</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Leandro Ferrari. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll reveal animation
+        function initScrollReveal() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('revealed');
+                    }
+                });
+            }, observerOptions);
+            
+            document.querySelectorAll('.reveal-on-scroll').forEach(el => {
+                observer.observe(el);
+            });
+        }
+        
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            initScrollReveal();
+        });
+    </script>
+</body>
+</html>
